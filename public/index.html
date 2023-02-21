@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Cyber Admin Panel</title>
+    <link href="/favicon.png" type="image/png" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <link href="/smart-cyber.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="layout--aside">
+        <div class="layout--aside-logo">
+          <img src="/assets/logo.svg" alt="Smart Cyber">
+        </div>
+        <nav class="layout--aside-nav">
+          <!-- Menu component -->
+          <ul class="menu">
+            <li class="menu--item"><a href="/">Dashboard</a></li>
+            <li class="menu--item"><a href="/firewall/">Firerwall</a></li>
+            <li class="menu--item"><a href="/gateways/">Network Gateways</a></li>
+            <li class="menu--item"><a href="/iinterfaces/">Interfaces</a></li>
+            <li class="menu--item menu--item-active">DHCP</li>
+            <li class="menu--item"><a href="/users/">Users</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <div class="layout--main">
+        <header class="layout--main-header">
+          <h1 class="layout--main-title">DHCP Settings</h1>
+          <!-- Menu component, same, but horizontal -->
+          <ul class="menu layout--main-nav">
+            <li class="menu--item  menu--item-active">
+              Network Pools
+            </li>
+            <li class="menu--item">
+              <a href="/dhcp/clients/">Active Clients</a>
+            </li>
+            <li class="menu--item">
+              <a href="/dhcp/binded/">Binded Addresses</a>
+            </li>
+          </ul>
+        </header>
+        <main class="layout--main-content">
+          <!-- Content table -->
+          <table class="content">
+            <thead>
+              <!-- Content table headers -->
+              <tr>
+                <th class="content--column-header">Name<span class="content--secondary-column-header"> / Class</span></th>
+                <th class="content--column-header">Address range<span class="content--secondary-column-header"> / Netmask</span></th>
+                <th class="content--column-header">Gateway</th>
+                <th class="content--column-header">Active clients</th>
+                <th class="content--column-header">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Content row, collapsed -->
+              <tr class="content--row" tabindex="0">
+                <td class="content--cell">
+                  <h2 class="content--title">Developers</h2>
+                  <p class="content--secondary">DEV-Local</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--value">192.1168.1.1—1192.168.1.243</p>
+                  <p class="content--secondary">255.255.255.0</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--value">Internal resources</p>
+                  <p class="content--secondary">21.4.255.2</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--number content--number-centered">0</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--value content--value-disabled">Disabled</p>
+                </td>
+              </tr>
+              <!-- Content row, collapsed -->
+              <tr class="content--row" tabindex="0">
+                <td class="content--cell">
+                  <h2 class="content--title">Guests</h2>
+                </td>
+                <td class="content--cell">
+                  <p class="content--value">192.1168.0.1—1192.168.0.125</p>
+                  <p class="content--secondary">255.255.255.0</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--value">Default</p>
+                  <p class="content--secondary">21.4.255.1</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--number content--number-centered">12</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--value content--value-active">Active</p>
+                </td>
+              </tr>
+              <!-- Content rows, expandded (look for the second row) -->
+              <tr class="content--row content--row-active">
+                <td class="content--cell">
+                  <h2 class="content--title">Testers</h2>
+                  <p class="content--secondary">TST-Local</p>
+                </td>
+                <td class="content--cell">
+                </td>
+                <td class="content--cell">
+                  <p class="content--value">Internal resources</p>
+                  <p class="content--secondary">21.4.255.2</p>
+                </td>
+                <td class="content--cell">
+                </td>
+                <td class="content--cell">
+                  <p class="content--value content--value-error">Not Configured</p>
+                </td>
+              </tr>
+              <!-- Second row, contains form -->
+              <tr class="content--form-row">
+                <!-- single cell, colspan should be equal to the number of columns of the table -->
+                <td class="content--form-cell" colspan="5">
+
+                  <!-- Form component -->
+                  <form class="form">
+                    <div class="form--fields">
+                      <table class="form-table">
+                        <colgroup>
+                          <col width="48%">
+                          <col width="52%">
+                        </colgroup>
+                        <tbody>
+                          <!-- Each form field is a row in a table, to keep the alignment -->
+
+                          <!-- Text field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="name">Name</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input type="text" id="name" name="name" value="Testers" />
+                            </td>
+                          </tr>
+
+                          <!-- Select field -->
+                          <!-- it's better to use select field instead of radio-button or checkboxes -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="status">Status</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <select id="status">
+                                <option value="not-configured" selected>Not Configured</option>
+                                <option value="active">Active</option>
+                                <option value="disabled">Disabled</option>
+                              </select>
+                            </td>
+                          </tr>
+
+                          <!-- Field group title -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <!-- attribute for should point to the first subfield -->
+                              <label class="form--field-label" for="range-start">IP Address Range</label>
+                            </td>
+                          </tr>
+
+                          <!-- IP-address field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label form--subfield-label" for="range-start">Start</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input class="form--field-ip" id="range-start" type="text" value="0.0.0.0" />
+                            </td>
+                          </tr>
+
+                          <!-- IP-address field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label form--subfield-label" for="range-end">End</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input class="form--field-ip" id="range-end" type="text" value="0.0.0.0" />
+                            </td>
+                          </tr>
+
+                          <!-- IP-address field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="mask">Subnet Mask</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input class="form--field-ip" id="mask" type="text" value="0.0.0.0" />
+                            </td>
+                          </tr>
+
+                          <!-- Number field with units and example -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="lease-time">
+                                Lease Time
+                                <span class="form--field-label-units"> (minutes)</span>
+                              </label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input class="form--field-number" id="lease-time" type="text" value="120" />
+                              <span class="form--field-example"> 1–2880</span>
+                            </td>
+                          </tr>
+
+                          <!-- Select field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="gateway">Gateway</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <select id="gateway">
+                                <option value="0">Default / 21.4.255.1</option>
+                                <option value="1" selected>Internal Resources / 21.4.255.2</option>
+                                <option value="2">Infrastructure / 21.4.255.3</option>
+                              </select>
+                            </td>
+                          </tr>
+
+                          <!-- Text field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="domain">Domain</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input type="text" id="domain" value="" />
+                            </td>
+                          </tr>
+
+                          <!-- Field group title -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="dns-primary">DNS Servers</label>
+                            </td>
+                          </tr>
+
+                          <!-- IP-address field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label form--subfield-label" for="dns-primary">Primary</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input class="form--field-ip" id="dns-primary" type="text" value="0.0.0.0" />
+                            </td>
+                          </tr>
+
+                          <!-- IP-address field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label form--subfield-label" for="dns-secondary">Secondary</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input class="form--field-ip" id="dns-secondary" type="text" value="0.0.0.0" />
+                            </td>
+                          </tr>
+
+                          <!-- Text field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="vclass">Vendor Class</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input type="text" id="vclass" value="" />
+                            </td>
+                          </tr>
+                          
+                          <!-- Text field -->
+                          <tr class="form-table--row">
+                            <td class="form-table--cell-label">
+                              <label class="form--field-label" for="uclass">User Class</label>
+                            </td>
+                            <td class="form-table--cell-field">
+                              <input type="text" id="uclass" value="TST-Local" />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <!-- Action butttons -->
+                    <div class="form--controls">
+                      <button class="button button--primary" type="submit">Save Changes</button>
+                      <button class="button button--danger" type="button">Delete</button>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              <!-- Content row, collapsed -->
+              <tr class="content--row content-row-new" tabindex="0">
+                <td class="content--cell" colspan="4">
+                  <h2 class="content--title">New DHCP Pool</h2>
+                  <p class="content--secondary">Click here to create a new pool</p>
+                </td>
+                <td class="content--cell">
+                  <p class="content--value content--value-error">Not Configured</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
